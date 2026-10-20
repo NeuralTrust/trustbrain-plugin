@@ -5,7 +5,9 @@
   },
   "description": "Your memory of work, shared by every AI you use: it recalls people, projects and decisions before answering, and saves what each conversation settles.",
   "displayName": "TrustBrain",
+  "documentationUrl": "https://github.com/NeuralTrust/trustbrain-plugin",
   "homepage": "https://brain.neuraltrust.ai",
+  "icon": "./icon.png",
   "keywords": [
     "memory",
     "knowledge",
@@ -14,5 +16,8 @@
     "mcp"
   ],
   "name": "trustbrain",
-  "version": "1.0.1"
+  "privacyPolicyUrl": "https://neuraltrust.ai/privacy-policy",
+  "supportUrl": "https://neuraltrust.ai/contact",
+  "termsOfServiceUrl": "https://neuraltrust.ai/terms-of-service",
+  "version": "1.1.0"
 }
