@@ -1,0 +1,16 @@
+{
+  "description": "TrustBrain, the memory every AI you use shares.",
+  "name": "trustbrain",
+  "owner": {
+    "name": "NeuralTrust",
+    "url": "https://neuraltrust.ai"
+  },
+  "plugins": [
+    {
+      "description": "Your memory of work, shared by every AI you use: it recalls people, projects and decisions before answering, and saves what each conversation settles.",
+      "displayName": "TrustBrain",
+      "name": "trustbrain",
+      "source": "./"
+    }
+  ]
+}

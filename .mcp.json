@@ -1,0 +1,8 @@
+{
+  "mcpServers": {
+    "trustbrain": {
+      "type": "http",
+      "url": "https://brain.neuraltrust.ai/mcp"
+    }
+  }
+}
