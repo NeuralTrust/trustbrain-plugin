@@ -14,8 +14,14 @@ and shared by every AI they use. The `trustbrain` MCP server gives you its tools
 - When the user asks about or works on anything to do with their work (a person, a company, a
   project, a meeting, a past decision, how they like things done), call `recall` with the task
   in one sentence before you answer. Once per topic is enough; call it again when the topic changes.
+- Pass `keywords` too: the key terms and their synonyms in English and in the user's language
+  (`santander release problem issue bug incident problema fallo incidencia`). Slack is often
+  searched by words, so a message that says "bug" is only found if you include it.
 - Use what it returns as your own knowledge of the user. Cite line IDs such as `[a1b2c3]` only
   when the user asks where something comes from.
+- Overviews and conclusions come first: where a person or project stands, and what several
+  lines amount to, drawn by TrustBrain from the lines they cite. Commitments show when they are
+  due, overdue, or done.
 - When it returns nothing useful, answer as usual. Do not mention the brain unless the user asked.
 - `explore` shows how a person or project connects to the rest; `fetch` opens a line with its
   sources, or a source with a link to the original.
@@ -31,6 +37,10 @@ week:
 - a preference or way of working: "Ana wants project updates on Fridays, as five bullets."
 - a lasting fact about a person, organization or project: a role, an owner, a deadline, a status.
 - a commitment: who does what, by when.
+
+When you draw a conclusion from what `recall` returned (a pattern, a risk, what several lines
+amount to) and the user agrees with it, save it as one sentence with `based_on` set to the IDs of
+the lines it rests on. It is kept only when those lines bear it out.
 
 Write standalone sentences with names and dates, in the user's words. Save at a natural pause,
 when a decision lands or a task ends, with everything in one call rather than one call per fact.
