@@ -18,7 +18,8 @@ You need a TrustBrain account: sign up at https://brain.neuraltrust.ai.
 
 1. Open [Customize > Plugins](https://claude.ai/customize/plugins), click Add, then Add
    marketplace, and enter `NeuralTrust/trustbrain-plugin`.
-2. Install TrustBrain, open its Connectors tab, click Connect and approve.
+2. Install TrustBrain, open its Connectors tab, click Connect and approve. Installing does not
+   sign you in; on Team and Enterprise plans an Owner may need to add the connector first.
 
 A plugin installed in Claude also reaches Claude Code on the same account.
 
