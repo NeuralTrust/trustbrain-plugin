@@ -1,0 +1,59 @@
+{
+  "hooks": {
+    "afterAgentResponse": [
+      {
+        "command": "sh \"${CURSOR_PLUGIN_ROOT}/hooks/trustbrain.sh\" cursor afterAgentResponse",
+        "timeout": 30
+      }
+    ],
+    "afterFileEdit": [
+      {
+        "command": "sh \"${CURSOR_PLUGIN_ROOT}/hooks/trustbrain.sh\" cursor afterFileEdit",
+        "timeout": 30
+      }
+    ],
+    "afterMCPExecution": [
+      {
+        "command": "sh \"${CURSOR_PLUGIN_ROOT}/hooks/trustbrain.sh\" cursor afterMCPExecution",
+        "timeout": 30
+      }
+    ],
+    "afterShellExecution": [
+      {
+        "command": "sh \"${CURSOR_PLUGIN_ROOT}/hooks/trustbrain.sh\" cursor afterShellExecution",
+        "timeout": 30
+      }
+    ],
+    "beforeSubmitPrompt": [
+      {
+        "command": "sh \"${CURSOR_PLUGIN_ROOT}/hooks/trustbrain.sh\" cursor beforeSubmitPrompt",
+        "timeout": 5
+      }
+    ],
+    "postToolUse": [
+      {
+        "command": "sh \"${CURSOR_PLUGIN_ROOT}/hooks/trustbrain.sh\" cursor postToolUse",
+        "timeout": 5
+      }
+    ],
+    "postToolUseFailure": [
+      {
+        "command": "sh \"${CURSOR_PLUGIN_ROOT}/hooks/trustbrain.sh\" cursor postToolUseFailure",
+        "timeout": 5
+      }
+    ],
+    "sessionStart": [
+      {
+        "command": "sh \"${CURSOR_PLUGIN_ROOT}/hooks/trustbrain.sh\" cursor sessionStart",
+        "timeout": 10
+      }
+    ],
+    "stop": [
+      {
+        "command": "sh \"${CURSOR_PLUGIN_ROOT}/hooks/trustbrain.sh\" cursor stop",
+        "timeout": 30
+      }
+    ]
+  },
+  "version": 1
+}

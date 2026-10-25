@@ -1,0 +1,20 @@
+{
+  "interface": {
+    "displayName": "TrustBrain"
+  },
+  "name": "trustbrain",
+  "plugins": [
+    {
+      "category": "Productivity",
+      "name": "trustbrain",
+      "policy": {
+        "authentication": "ON_USE",
+        "installation": "AVAILABLE"
+      },
+      "source": {
+        "path": "./",
+        "source": "local"
+      }
+    }
+  ]
+}
