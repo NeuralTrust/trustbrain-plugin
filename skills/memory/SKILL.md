@@ -19,7 +19,8 @@ and shared by every AI they use. The `trustbrain` MCP server gives you its tools
   searched by words, so a message that says "bug" is only found if you include it.
 - When coding in a git repository, pass `repo` too (`owner/name`, or what `git remote get-url
   origin` prints): the repository's page in the organization's knowledge bases (what it does,
-  how to run, test and deploy it, its conventions) comes first.
+  how to run, test and deploy it, its conventions) comes first, and what the user's agents learned
+  working in it leads.
 - Use what it returns as your own knowledge of the user. Cite line IDs such as `[a1b2c3]` only
   when the user asks where something comes from.
 - Overviews and conclusions come first: where a person or project stands, and what several
@@ -46,6 +47,11 @@ week:
 - a preference or way of working: "Ana wants project updates on Fridays, as five bullets."
 - a lasting fact about a person, organization or project: a role, an owner, a deadline, a status.
 - a commitment: who does what, by when.
+
+When coding, pass `repo` to `remember` for what holds in that repository: the commands that build,
+test and run it and what they need first, its conventions, a decision and its reason, a pitfall that
+cost time. Leave `repo` out for what holds everywhere, such as the user's preferences. To teach
+TrustBrain a whole repository at once, use the `learn-repo` skill.
 
 When you draw a conclusion from what `recall` returned (a pattern, a risk, what several lines
 amount to) and the user agrees with it, save it as one sentence with `based_on` set to the IDs of

@@ -1,0 +1,36 @@
+{
+  "author": {
+    "name": "NeuralTrust",
+    "url": "https://neuraltrust.ai"
+  },
+  "description": "Your memory of work, shared by every AI you use: it recalls people, projects and decisions before answering, and saves what each conversation settles.",
+  "homepage": "https://brain.neuraltrust.ai",
+  "hooks": "./hooks/codex.json",
+  "interface": {
+    "capabilities": [
+      "Read",
+      "Write"
+    ],
+    "category": "Productivity",
+    "developerName": "NeuralTrust",
+    "displayName": "TrustBrain",
+    "logo": "./icon.png",
+    "longDescription": "Your memory of work, shared by every AI you use: it recalls people, projects and decisions before answering, and saves what each conversation settles. In a repository it starts each session with what your agents learned there, and learns from how the work went.",
+    "privacyPolicyURL": "https://neuraltrust.ai/privacy-policy",
+    "shortDescription": "Your memory of work, shared by every AI you use",
+    "termsOfServiceURL": "https://neuraltrust.ai/terms-of-service",
+    "websiteURL": "https://brain.neuraltrust.ai"
+  },
+  "keywords": [
+    "memory",
+    "knowledge",
+    "decisions",
+    "coding",
+    "mcp"
+  ],
+  "mcpServers": "./.mcp.json",
+  "name": "trustbrain",
+  "repository": "https://github.com/NeuralTrust/trustbrain-plugin",
+  "skills": "./skills/",
+  "version": "2.0.0"
+}
