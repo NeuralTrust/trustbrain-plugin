@@ -1,5 +1,5 @@
-# TrustBrain hooks for Windows (https://github.com/NeuralTrust/trustbrain-plugin):
-# sends a coding agent's hook event to TrustBrain and prints what it answers.
+# Memorable hooks for Windows (https://github.com/NeuralTrust/trustbrain-plugin):
+# sends a coding agent's hook event to Memorable and prints what it answers.
 # Usage: powershell -NoProfile -File trustbrain.ps1 <client> <event>
 param([string]$Client = "claude", [string]$Event = "")
 $ErrorActionPreference = "SilentlyContinue"
@@ -22,7 +22,7 @@ function Nothing {
 # Cursor runs Claude Code's hooks too; its own plugin answers there.
 if ($Client -eq "claude" -and $env:CURSOR_VERSION) { Nothing }
 $InputJson = [Console]::In.ReadToEnd()
-# Cursor takes no context before a message: what TrustBrain found for it is
+# Cursor takes no context before a message: what Memorable found for it is
 # kept, and printed after the message's first tool call.
 $Conversation = try { (($InputJson | ConvertFrom-Json).conversation_id -replace '[^A-Za-z0-9_-]', '') } catch { "" }
 $Later = Join-Path $Dir ("later-$Client-" + $(if ($Conversation) { $Conversation } else { "none" }))
@@ -41,7 +41,8 @@ if (-not (Test-Path $TokenFile) -and (Test-Path $Pending)) {
 }
 if (-not (Test-Path $TokenFile)) {
   if ($Event -notin "SessionStart", "sessionStart", "UserPromptSubmit") { Nothing }
-  if ((Test-Path $Pending) -and ((Get-Item $Pending).LastWriteTime -gt (Get-Date).AddMinutes(-14))) { Nothing }
+  # A message asks a new code only once the last has run out; a new session always does, so the link it shows is good.
+  if (($Event -notin "SessionStart", "sessionStart") -and (Test-Path $Pending) -and ((Get-Item $Pending).LastWriteTime -gt (Get-Date).AddMinutes(-14))) { Nothing }
   try {
     $resp = Invoke-WebRequest -Method Post -Uri "$TbUrl/hooks/device/code?client=$Client&event=$Event" -ContentType "application/json" `
       -Body (@{ device = $env:COMPUTERNAME } | ConvertTo-Json) -TimeoutSec 5 -UseBasicParsing
