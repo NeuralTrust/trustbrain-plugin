@@ -1,10 +1,10 @@
 #!/bin/sh
-# TrustBrain for coding agents (https://github.com/NeuralTrust/trustbrain-plugin),
-# plugin 2.0.0: adds TrustBrain's plugin to every coding agent on this
+# Memorable for coding agents (https://github.com/NeuralTrust/trustbrain-plugin),
+# plugin 2.1.3: adds Memorable's plugin to every coding agent on this
 # computer, each in its own form: Claude Code and Codex from their plugin
 # marketplace, Cursor as a local plugin, OpenCode as a plugin file. Each gets
-# TrustBrain's MCP server, its skills, and hooks that start each session with
-# what TrustBrain knows and send the session to learn from.
+# Memorable's MCP server, its skills, and hooks that start each session with
+# what Memorable knows and send the session to learn from.
 #
 #   curl -fsSL https://brain.neuraltrust.ai/hooks/install.sh | sh
 #   curl -fsSL https://brain.neuraltrust.ai/hooks/install.sh | sh -s -- --agents codex,cursor --yes
@@ -149,9 +149,9 @@ for a in $AGENTS; do
 done
 
 if [ "$UNINSTALL" = 1 ]; then
-  say "TrustBrain will be removed from:$(printf ' %s' $AGENTS)"
+  say "Memorable will be removed from:$(printf ' %s' $AGENTS)"
 else
-  say "TrustBrain ($TB_URL) will be added to:$(printf ' %s' $AGENTS)"
+  say "Memorable ($TB_URL) will be added to:$(printf ' %s' $AGENTS)"
 fi
 if [ "$YES" != 1 ] && [ "$DRY" != 1 ] && [ -r /dev/tty ]; then
   printf 'Go on? [Y/n] '
@@ -159,7 +159,7 @@ if [ "$YES" != 1 ] && [ "$DRY" != 1 ] && [ -r /dev/tty ]; then
   case "$answer" in n*|N*) exit 0 ;; esac
 fi
 
-# The plugin for every agent, from this TrustBrain, unpacked once.
+# The plugin for every agent, from this Memorable, unpacked once.
 FETCHED=0
 fetch() {
   [ "$FETCHED" = 1 ] && return 0
@@ -167,7 +167,7 @@ fetch() {
   [ "$DRY" = 1 ] && { say "  would download $TB_URL/api/plugin/agents.tar.gz into $BUNDLE"; return 0; }
   tmp=$(mktemp -d) || exit 1
   if ! curl -fsSL "$TB_URL/api/plugin/agents.tar.gz" | tar -xzf - -C "$tmp"; then
-    say "Could not download TrustBrain's plugin from $TB_URL."
+    say "Could not download Memorable's plugin from $TB_URL."
     rm -rf "$tmp"
     exit 1
   fi
@@ -224,7 +224,7 @@ codex_install() {
   quiet codex plugin marketplace add "$source" || quiet codex plugin marketplace upgrade "$MARKETPLACE" || true
   if quiet codex plugin add "trustbrain@$MARKETPLACE" || run codex plugin install "trustbrain@$MARKETPLACE"; then
     retire "${CODEX_HOME:-$HOME/.codex}/hooks.json" "$LEGACY_CODEX"
-    say "  installed. In Codex, open /hooks and trust TrustBrain's hooks; sign in to its connector when Codex asks."
+    say "  installed. In Codex, open /hooks and trust Memorable's hooks; sign in to its connector when Codex asks."
   else
     say "  could not install; in Codex open /plugins and add trustbrain from the $MARKETPLACE marketplace ($source)"
   fi
@@ -249,7 +249,7 @@ cursor_install() {
       mv "$CURSOR_DIR/hooks/cursor.json.new" "$CURSOR_DIR/hooks/cursor.json"
   fi
   retire "$HOME/.cursor/hooks.json" "$LEGACY_CURSOR"
-  say "  installed in $CURSOR_DIR. Reload Cursor (Developer: Reload Window) and connect TrustBrain's MCP server when it asks."
+  say "  installed in $CURSOR_DIR. Reload Cursor (Developer: Reload Window) and connect Memorable's MCP server when it asks."
 }
 
 cursor_uninstall() {
@@ -279,7 +279,7 @@ for a in $AGENTS; do
 done
 
 if [ "$UNINSTALL" = 1 ]; then
-  say "Done. This computer's sign-ins are in $HOME_DIR: delete it, and disconnect them in TrustBrain's Settings > Agents."
+  say "Done. This computer's sign-ins are in $HOME_DIR: delete it, and disconnect them in Memorable's Settings > Agents."
 else
-  say "Done. The first session asks you to approve this computer in TrustBrain, once per agent."
+  say "Done. The first session asks you to approve this computer in Memorable, once per agent."
 fi

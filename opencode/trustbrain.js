@@ -1,8 +1,8 @@
-// TrustBrain for OpenCode (https://github.com/NeuralTrust/trustbrain-plugin):
+// Memorable for OpenCode (https://github.com/NeuralTrust/trustbrain-plugin):
 // the user's memory of their work, shared by every AI they use. It adds
-// TrustBrain's MCP server; at the start of a session and before each message
-// it gives what TrustBrain knows; after each turn it sends the session's new
-// messages, which TrustBrain learns from when the workspace learns from
+// Memorable's MCP server; at the start of a session and before each message
+// it gives what Memorable knows; after each turn it sends the session's new
+// messages, which Memorable learns from when the workspace learns from
 // sessions. All the logic is on the server. One file for OpenCode 1 and 2:
 // put it in ~/.config/opencode/plugins/.
 import { execFileSync } from "node:child_process"
@@ -98,7 +98,7 @@ async function startSignIn() {
   }
 }
 
-// hook sends one event: what TrustBrain gives for it and, at the end of a
+// hook sends one event: what Memorable gives for it and, at the end of a
 // turn, from which line it wants the session's transcript.
 async function hook(name, body, dir, timeout) {
   const auth = await signIn()
@@ -122,7 +122,7 @@ async function hook(name, body, dir, timeout) {
 
 // lines turns a session's messages (OpenCode 1's {info, parts} or 2's
 // {id, type, content}) into transcript lines in Claude Code's form, one per
-// message, what TrustBrain gave left out.
+// message, what Memorable gave left out.
 function lines(messages) {
   const out = []
   for (const m of messages || []) {
@@ -148,7 +148,7 @@ function lines(messages) {
 }
 
 // A session's transcript can shrink when OpenCode compacts it: what was
-// sent is remembered by message, from the first line TrustBrain asked for.
+// sent is remembered by message, from the first line Memorable asked for.
 const sent = new Map()
 
 async function capture(sessionID, dir, messagesOf) {
@@ -176,7 +176,7 @@ async function capture(sessionID, dir, messagesOf) {
 }
 
 // context is what a message starts with: at a session's first, who the user
-// is and what their agents learned in the repository; then what TrustBrain
+// is and what their agents learned in the repository; then what Memorable
 // finds relevant to the message.
 const started = new Set()
 

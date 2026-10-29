@@ -13,7 +13,7 @@
     ],
     "category": "Productivity",
     "developerName": "NeuralTrust",
-    "displayName": "TrustBrain",
+    "displayName": "Memorable",
     "logo": "./icon.png",
     "longDescription": "Your memory of work, shared by every AI you use: it recalls people, projects and decisions before answering, and saves what each conversation settles. In a repository it starts each session with what your agents learned there, and learns from how the work went.",
     "privacyPolicyURL": "https://neuraltrust.ai/privacy-policy",
@@ -32,5 +32,5 @@
   "name": "trustbrain",
   "repository": "https://github.com/NeuralTrust/trustbrain-plugin",
   "skills": "./skills/",
-  "version": "2.0.0"
+  "version": "2.1.3"
 }

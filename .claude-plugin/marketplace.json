@@ -1,5 +1,5 @@
 {
-  "description": "TrustBrain, the memory every AI you use shares.",
+  "description": "Memorable, the memory every AI you use shares.",
   "name": "trustbrain",
   "owner": {
     "name": "NeuralTrust",
@@ -8,7 +8,7 @@
   "plugins": [
     {
       "description": "Your memory of work, shared by every AI you use: it recalls people, projects and decisions before answering, and saves what each conversation settles.",
-      "displayName": "TrustBrain",
+      "displayName": "Memorable",
       "name": "trustbrain",
       "source": "./"
     }

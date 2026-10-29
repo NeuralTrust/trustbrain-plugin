@@ -1,6 +1,6 @@
 #!/bin/sh
-# TrustBrain hooks (https://github.com/NeuralTrust/trustbrain-plugin): sends a
-# coding agent's hook event to TrustBrain and prints what it answers. All the
+# Memorable hooks (https://github.com/NeuralTrust/trustbrain-plugin): sends a
+# coding agent's hook event to Memorable and prints what it answers. All the
 # logic is on the server; this needs only sh and curl. Usage:
 #   trustbrain.sh <client> <event>    (the event's JSON on stdin)
 TB_URL="${TRUSTBRAIN_URL:-https://brain.neuraltrust.ai}"
@@ -15,7 +15,7 @@ PENDING="$DIR/pending-$CLIENT"
 # folder.
 PROJECT="${CURSOR_PROJECT_DIR:-${CLAUDE_PROJECT_DIR:-$PWD}}"
 
-# A hook that expects JSON gets an empty answer when TrustBrain has none.
+# A hook that expects JSON gets an empty answer when Memorable has none.
 nothing() {
   case "$EVENT" in
     Stop|SubagentStop|stop|afterAgentResponse|afterMCPExecution|afterShellExecution|afterFileEdit|sessionStart|postToolUse|postToolUseFailure) printf '{}' ;;
@@ -30,7 +30,7 @@ command -v curl >/dev/null 2>&1 || nothing
 INPUT=$(cat)
 mkdir -p "$DIR" 2>/dev/null && chmod 700 "$DIR" 2>/dev/null
 
-# Cursor takes no context before a message: what TrustBrain found for it is
+# Cursor takes no context before a message: what Memorable found for it is
 # kept, and printed after the message's first tool call.
 CONVERSATION=$(printf '%s' "$INPUT" | sed -n 's/.*"conversation_id"[[:space:]]*:[[:space:]]*"\([A-Za-z0-9_-]*\)".*/\1/p' | head -n 1)
 LATER="$DIR/later-$CLIENT-${CONVERSATION:-none}"
@@ -62,7 +62,12 @@ if [ ! -s "$TOKEN_FILE" ]; then
     SessionStart|sessionStart|UserPromptSubmit) ;;
     *) nothing ;;
   esac
-  [ -s "$PENDING" ] && [ -n "$(find "$PENDING" -mmin -14 2>/dev/null)" ] && nothing
+  # A message asks a new code only once the last has run out; a new
+  # session always does, so the link it shows is good.
+  case "$EVENT" in
+    SessionStart|sessionStart) ;;
+    *) [ -s "$PENDING" ] && [ -n "$(find "$PENDING" -mmin -14 2>/dev/null)" ] && nothing ;;
+  esac
   HDR=$(mktemp) || nothing
   BODY=$(curl -s -m 5 -D "$HDR" -X POST "$TB_URL/hooks/device/code?client=$CLIENT&event=$EVENT" \
     -H 'Content-Type: application/json' -d "{\"device\":\"$(hostname 2>/dev/null)\"}")
